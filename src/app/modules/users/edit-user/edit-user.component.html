@@ -1,0 +1,37 @@
+<div class=" container d-flex justify-content-center align-items-center  ">
+    
+    <div style="height: 95vh;width: 150px;" class="sidebar bg-dark text-light p-3 me-auto d-flex flex-column">
+        
+        <a style="text-decoration: none;color: white;margin-top: 10px;" routerLink="/dashboard">Home</a>
+        <a style="text-decoration: none;color: white;margin-top: 10px;" routerLink="/users">Users</a>
+    
+    
+    </div>
+    <div class="w-100">
+        <h1>Add New User Details</h1>
+        
+        <form #edituserform="ngForm" >
+            <div class=" container w-50 p-5 shadow bg-light">
+            
+            <input class="form-control mt-3" type="text" placeholder="User Id" name="id" [(ngModel)]="user.id" #uid="ngModel" required pattern="[0-9]*">
+            <div *ngIf="uid.invalid && uid.touched" class="fw-bolder text-danger">Required field</div>
+            <input class="form-control mt-3" type="text" placeholder="User name" name="username" [(ngModel)]="user.name" #uname="ngModel" required pattern="[a-zA-Z]*">
+            <div *ngIf="uname.invalid && uname.touched" class="fw-bolder text-danger">Invalid Username</div>
+            <input class="form-control mt-3" type="text" placeholder="User Email" name="useremail" [(ngModel)]="user.email" #uemail="ngModel" required email>
+            <div *ngIf="uemail.invalid && uemail.touched" class="fw-bolder text-danger">Invalid Email</div>
+            <div class="form-floating">
+                <select class="form-control mt-3" name="active"  [(ngModel)]="user.active" #active="ngModel" required>
+                    <option disabled selected hidden value=""></option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+                <label for="">Status</label>
+            </div>
+            <div *ngIf="active.invalid && active.touched" class="fw-bolder text-danger">Required field</div>
+            <button (click)="cancel(user.id)" class="btn btn-warning mt-3">Cancel</button>
+            <button (click)="editUser(user.id)" type="submit" [disabled]="edituserform.invalid" class="btn btn-primary mt-3 ms-2">Update</button>
+
+            </div>
+      </form>
+ </div>
+</div>

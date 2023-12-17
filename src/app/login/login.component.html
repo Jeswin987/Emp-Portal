@@ -1,0 +1,29 @@
+<div class="main">
+    <div class=" jkl container d-flex justify-content-center align-items-center text-center mt-5 ">
+
+      <form #loginForm="ngForm" (ngSubmit)="login()" class="shadow  w-50 mt-4 m-5 p-5 text-center">
+          <p style="font-weight: bolder;">Login Form!</p>
+
+          <div class="mb-3 border p-1 m-1">
+              <input type="email" class="form-control" id="floatingInput" [(ngModel)]="email" name="email" placeholder="Email"  email required  #useremail="ngModel">
+          </div>
+          <!-- invalid email -->
+          <div *ngIf="useremail.invalid && useremail.touched" class="mb-3 text-danger fw-bolder">
+            invalid email
+          </div>
+
+          <div class="mb-3 border p-1 m-1">
+              <input type="password" class="form-control"  id="floatingPassword"  name="password" [(ngModel)]="password" placeholder="password" required pattern="[a-zA-Z0-9]*" minlength="3" #userpassword="ngModel">
+          </div>
+          <!-- invalid password -->
+          <div *ngIf="userpassword.invalid && userpassword.touched" class="mb-3 text-danger fw-bolder">
+            invalid password
+          </div>
+          
+          <div class="mb-3">
+              <input [disabled]="loginForm.invalid" class="btn btn-success me-4"   type="submit" value="Login">
+              <span>New user? Click here to <a routerLink="register">Register</a></span>
+          </div>
+      </form>
+    </div>
+</div>
